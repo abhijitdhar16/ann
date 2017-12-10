@@ -1,3 +1,8 @@
+#------------------------------------------------------------------------------
+# This class is used as timer which determine the sequence in which     s
+# should be fired. The set of     s that are architecturally at the same 
+# layer should be fired at the same time.
+#------------------------------------------------------------------------------
 class timer () :
     def __init__ (self) :
         self.current_time = 0
@@ -11,9 +16,20 @@ class timer () :
     def getTime (self):
         return self.current_time
     # end def        
-# end class    
+# end class
 
-class nuron () :
+
+#------------------------------------------------------------------------------
+# This class is used to emulate a neuron. neuron class must have the following 
+# attributes or properties
+#    1) A threshold value
+#    2) A set of incoming links
+#    3) A set of outgoing links
+#    4) The architectural layer in which this neuron belongs to
+#    5) The global timer data structure that decides when this neuron should
+#       fire
+#------------------------------------------------------------------------------
+class neuron () :
     def __init__ (self, threshold, in_link, out_link, layer, timer, name = {}):
         self.name       = name
         self.threshold  = threshold
@@ -22,7 +38,7 @@ class nuron () :
         self.timer      = timer
         self.layer      = layer
         self.init_state = 0 
-        if ((type(in_link) != type([])) and (type(in_link) != type([]))) :
+        if ((type(in_link) != type([])) and (type(out_link) != type([]))) :
             rise ("in_link or out_link type is not list")
         else :
             for l in in_link :                   
@@ -117,6 +133,12 @@ class nuron () :
     # end def        
 # end class    
 
+
+#------------------------------------------------------------------------------
+# This class is used to emulate a link between two neuron. A link class must 
+# have the property called weight. A signal passing through the link must be 
+# multiplied by its weight.
+#------------------------------------------------------------------------------
 class link () :
     def __init__ (self, weight) :
         self.wait = weight
