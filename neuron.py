@@ -4,7 +4,6 @@ import sys
 # AND, OR, XOR etc. This library defines three simple class "neuron", "link"
 # and "timer" to build a simple neural network and emulate logic functions.
 #------------------------------------------------------------------------------
-
 class annErrors () :
     def __init__(self) :
         self.errMsg = {}
@@ -41,25 +40,29 @@ class annErrors () :
 # end class    
 annErr = annErrors()
 
-#------------------------------------------------------------------------------
-# This class is used to emulate a neuron. neuron class must have the following 
-# attributes or properties
-#    1) A threshold value
-#    2) A set of incoming links
-#    3) A set of outgoing links
+#-------------------------------------------------------------------------------
+# This class is used to emulate a neuron. The neuron class must have the 
+# following attributes or properties
+#    1) A lower threshold and upper threshold. If the total input is less than
+#       the lower threshold or greater than the upper threshold then output of
+#       the neurone is zero, one otherwise.
+#    2) A set of incoming links.
+#    3) A set of outgoing links.
 #    4) The architectural layer in which this neuron belongs to
 #    5) The global timer data structure that decides when this neuron should
 #       fire
 #------------------------------------------------------------------------------
 class neuron () :
-    def __init__ (self, threshold, in_link, out_link, layer, timer, name = {}):
-        self.name       = name
-        self.threshold  = threshold
-        self.in_link    = []
-        self.out_link   = []
-        self.timer      = timer
-        self.layer      = layer
-        self.init_state = 0 
+    def __init__ (self, threshold_range, in_link, out_link, layer, timer, name = {}):
+        self.name = name
+        self.min_threshold = threshold_range[0]
+        self.max_threshold = threshold_range[1]
+        self.in_link = []
+        self.out_link = []
+        self.timer = timer
+        self.layer = layer
+        self.init_state = 0
+ 
         for l in in_link :                   
             self.in_link.append(l)
         # end for
@@ -94,7 +97,7 @@ class neuron () :
     # end def
 
     def activation_func (self, val) :
-        if val >= self.threshold :
+        if ((val >= self.min_threshold) and (val <= self.max_threshold)):
             return 1.0
         else :
             return 0.0
@@ -106,10 +109,7 @@ class neuron () :
         for i in self.in_link :
             total_in = total_in + i.get()
         # end for
-        if (total_in >= self.threshold) : 
-            output = self.activation_func(total_in)
-        else : 
-            output = 0.0
+        output = self.activation_func(total_in)
         # end if
         if (self.timer.getTime()) >= self.layer :
             for o in self.out_link :
@@ -123,11 +123,11 @@ class neuron () :
     # end def
 # end class
 
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # This class is used to emulate a link between two neuron. A link class must 
 # have the property called weight. A signal passing through the link must be 
 # multiplied by its weight.
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 class link (annErrors) :
     def __init__ (self, weight = 1, type = 'link') :
         self.weight = weight
@@ -170,11 +170,11 @@ class link (annErrors) :
     # end def
 # end class
 
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # This class is used as timer which determine the sequence in which neurons
 # should be fired. The set of neurons that are architecturally at the same 
 # layer should be fired at the same time.
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 class timer () :
     def __init__ (self) :
         self.current_time = 0
