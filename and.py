@@ -40,7 +40,7 @@ class my_network () :
         num_layer = 2
 
         # Define timer
-        self.timer = neuron.timer()
+        self.timer = neuron.timer(max_layers=num_layer)
 
         # Define link L1 i.e. X1 --> Y
         self.l1 = neuron.link(type='input')

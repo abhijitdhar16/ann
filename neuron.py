@@ -33,7 +33,6 @@ class annErrors () :
         raise() 
     # end def
 # end class    
-annErr = annErrors()
 
 #-------------------------------------------------------------------------------
 # This class is used to emulate a neuron. The neuron class must have the 
@@ -47,7 +46,7 @@ annErr = annErrors()
 #    5) The global timer data structure that decides when this neuron should
 #       fire
 #------------------------------------------------------------------------------
-class neuron () :
+class neuron (annErrors) :
     def __init__ (self, threshold_range, in_link, out_link, layer, timer, name = {}):
         self.name = name
         self.min_threshold = threshold_range[0]
@@ -128,7 +127,6 @@ class link (annErrors) :
         self.weight = weight
         self.in_signal  = 0
         self.out_signal = 0
-        self.annErrors  = annErrors()
         if ((type == 'input')   or
             (type == 'output')  or
             (type == 'bias')) :
@@ -170,13 +168,19 @@ class link (annErrors) :
 # layer should be fired at the same time.
 #-------------------------------------------------------------------------------
 class timer () :
-    def __init__ (self) :
+    def __init__ (self, max_layers) :
         self.current_time = 0
+        self.max_layers = max_layers   
     # end def
 
     def tick(self):
-        self.current_time = self.current_time + 1
-        return self.current_time
+        if (self.current_time <= self.max_layers):
+            self.current_time = self.current_time + 1
+            return self.current_time
+        else:
+            self.reset()
+            return self.current_time
+        # end if
     # end def
     
     def getTime (self):
