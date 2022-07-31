@@ -43,10 +43,10 @@ class my_network () :
         self.timer = neuron.timer()
 
         # Define link L1 i.e. X1 --> Y
-        self.l1 = neuron.link(type='synapse')
+        self.l1 = neuron.link(type='input')
 
         # Define link L2 i.e. X1 --> Y
-        self.l2 = neuron.link(type='synapse')
+        self.l2 = neuron.link(type='input')
 
         # Input is also a link
         self.i1 = neuron.link(type='input')

@@ -17,14 +17,9 @@ class annErrors () :
         respective link type is not 'output'.
         """
         
-        self.errMsg['003'] = """
-        "Cannot send a input to a link using 'send' method if the respective
-        link type is not 'synapse'.
-        """
-        
         self.errMsg['004'] = """
         An undefined link type specified. Valid link types are 'input',
-        'output', 'synapse' and 'bias'.
+        'output', and 'bias'.
         """
         
         self.errMsg['005'] = """
@@ -113,7 +108,7 @@ class neuron () :
         # end if
         if (self.timer.getTime()) >= self.layer :
             for o in self.out_link :
-                if (o.type() == 'output') or (o.type() == 'synapse') :
+                if (o.type() == 'output') or (o.type() == 'input') :
                     o.send(output)
                 else :
                     annErr.error('003')
@@ -136,7 +131,6 @@ class link (annErrors) :
         self.annErrors  = annErrors()
         if ((type == 'input')   or
             (type == 'output')  or
-            (type == 'synapse') or 
             (type == 'bias')) :
             self.link_type =  type
         else :
@@ -180,7 +174,7 @@ class timer () :
         self.current_time = 0
     # end def
 
-    def tick(self) :
+    def tick(self):
         self.current_time = self.current_time + 1
         return self.current_time
     # end def
@@ -189,7 +183,7 @@ class timer () :
         return self.current_time
     # end def
 
-    def reset (self) :
+    def reset (self):
         self.current_time = 0
     # end def        
 # end class
