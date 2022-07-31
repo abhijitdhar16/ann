@@ -4,8 +4,8 @@ Let us define two building blocks of our ANN.
 2.  Link
 3.  Layer
 ### Neuron 
-A neuron is a basic computing unit which can generate a signal **s** (actually a floating point number), such that **0 <= s <= certain max value**, 
-based on one more input signal(s).
+A neuron is a basic computing unit which can process a signal **s** (actually a floating point number), such that **0 <= s <= certain max value**, 
+based on one more input signal(s). Output signal of a neurone can by simply 0 or 1.
 
 ### Link
 Link is computing unit like a pipe, which connects two neurons by carrying output of one neuron to the input of another.
