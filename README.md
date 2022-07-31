@@ -20,3 +20,12 @@ In the above diagram N1, N2, and N3 are neurones. L1 (w1), L2 (w2), L3 (w3), ...
 ### Layer
 Layers are architectural element of ANN which groups the neurons such a way that next layer (or group of neurons) can start computations after all 
 the neurons in the previous layer completed their computation.
+
+# A sample simulation of ANN in python
+This code base tried to implement above ANN using three four classes. Of course, implementation of the classes will change due to optimization, above 
+concept may change etc. But for the time being we have four classes
+1. neuron (to implement neuron)
+2. link (to implement link)
+3. timer (to replace layer)
+4. annErrors (to implement errors)
+
