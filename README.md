@@ -12,3 +12,6 @@ Additionally, a link has weight. Output/yleld of the link is **input-signal * we
 at the input end, receives the signal form external world, and the link that does not have neuron at the output end sends
 the signal to the output world.
 
+![alt text](./images/ann.svg)
+
+In the above diagram N1, N2, and N3 are neurones. L1 (w1), L2 (w2), L3 (w3), ... are the links with weights w1, w2, w3, ... w5 respectively. 
