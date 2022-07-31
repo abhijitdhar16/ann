@@ -1,7 +1,8 @@
 # A Simple implementation of Artificial Neural Network (ANN)
 Let us define two building blocks of our ANN. 
-1.  Link
-2.  Neuron
+1.  Neuron
+2.  Link
+3.  Layer
 ### Neuron 
 A neuron is a basic computing unit which can generate a signal **s** (actually a floating point number), such that **0 <= s <= certain max value**, 
 based on one more input signal(s).
@@ -14,4 +15,8 @@ the signal to the output world.
 
 ![alt text](./images/ann.svg)
 
-In the above diagram N1, N2, and N3 are neurones. L1 (w1), L2 (w2), L3 (w3), ... are the links with weights w1, w2, w3, ... w5 respectively. 
+In the above diagram N1, N2, and N3 are neurones. L1 (w1), L2 (w2), L3 (w3), ... are the links with weights w1, w2, w3, ... w5 respectively.
+
+### Layer
+Layers are architectural element of ANN which groups the neurons such a way that next layer (or group of neurons) can start computations after all 
+the neurons in the previous layer completed their computation.
