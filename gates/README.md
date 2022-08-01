@@ -8,5 +8,6 @@ our POC by implementing the following.
 4. Bias (while implementing the not gate).
 
 The diagram of the network is given below.
-[neural network implementing the gates]((../images/ann.svg)
+
+![neural network implementing the gates](../images/ann.svg)
   
