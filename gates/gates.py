@@ -1,3 +1,6 @@
+import  sys
+sys.path.append("../")
+
 import neuron
 #-------------------------------------------------------------------------------
 # Define your neural network architecture
@@ -108,7 +111,8 @@ class my_network () :
         self.x2.activate()
         self.timer.tick()
         self.y.activate()
-        print(self.y.output())
+        retval = self.y.output()
+        return retval
 
 #-------------------------------------------------------------------------------
 # End definition of AND neural network
@@ -121,5 +125,6 @@ for a in [0, 1] :
     for b in [0, 1] :
         nnet.set_input1(a)
         nnet.set_input1(b)
-        nnet.process() 
+        retval = nnet.process()
+        print(retval)
 

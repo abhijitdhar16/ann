@@ -22,10 +22,12 @@ Layers are architectural element of ANN which groups the neurons such a way that
 the neurons in the previous layer completed their computation.
 
 # A sample simulation of ANN in python
-This code base tried to implement above ANN using three four classes. Of course, implementation of the classes will change due to optimization, above 
-concept may change etc. But for the time being we have four classes
-1. neuron (to implement neuron)
-2. link (to implement link)
-3. timer (to replace layer)
-4. annErrors (to implement errors)
+This code base tried to implement above ANN using four classes. Of course, implementation of the classes will change due to optimization, above 
+concept may change etc. in future. But for the time being we have four classes
+1. neuron - to implement neuron
+2. link - to implement link
+3. timer - to replace layer
+4. annErrors - to handle the run time errors.
+
+Definition of each class is available on the top of each class in the file neuron.sh.
 

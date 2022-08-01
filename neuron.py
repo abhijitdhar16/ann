@@ -35,16 +35,28 @@ class annErrors () :
 # end class    
 
 #-------------------------------------------------------------------------------
-# This class is used to emulate a neuron. The neuron class must have the 
-# following attributes or properties
-#    1) A lower threshold and upper threshold. If the total input is less than
+# This class is used to emulate a neuron. The neuron class has the following 
+# attributes or properties.
+#    1) The lower threshold and upper threshold. If the total input is less than
 #       the lower threshold or greater than the upper threshold then output of
 #       the neurone is zero, one otherwise.
-#    2) A set of incoming links.
-#    3) A set of outgoing links.
-#    4) The architectural layer in which this neuron belongs to
-#    5) The global timer data structure that decides when this neuron should
-#       fire
+#    2) Array of incoming links.
+#    3) Array of outgoing links.
+#    4) The architectural layer in which the neuron belongs to.
+#    5) The timer data structure that decides when this neuron should be 
+#       activated.
+# Methods (public)
+#    1) input()    : Send input signal to the neuron.
+#    2) output()   : Read output signal from the neuron.
+#    3) activate() : activate the neuron. You will get the output after
+#                    activating the neuron only.
+# Methods (private)
+#    1. __activation_func__ : This function actually does the "computation"
+#                             inside the neuron.
+# Assumption:
+# Our activation function is a binary step function with threshold range
+# min_threshold and max_threshold. Input within the threshold range yields 
+# output 1, whereas Input outside the threshold yields output 0.
 #------------------------------------------------------------------------------
 class neuron (annErrors) :
     def __init__ (self, threshold_range, in_link, out_link, layer, timer, name = {}):
@@ -90,7 +102,7 @@ class neuron (annErrors) :
         return outlist
     # end def
 
-    def activation_func (self, val) :
+    def __activation_func__ (self, val) :
         if ((val >= self.min_threshold) and (val <= self.max_threshold)):
             return 1.0
         else :
@@ -103,7 +115,7 @@ class neuron (annErrors) :
         for i in self.in_link :
             total_in = total_in + i.get()
         # end for
-        output = self.activation_func(total_in)
+        output = self.__activation_func__(total_in)
         # end if
         if (self.timer.getTime()) >= self.layer :
             for o in self.out_link :
