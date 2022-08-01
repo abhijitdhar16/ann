@@ -12,3 +12,6 @@ The diagram of the network is given below.
 
 ![neural network implementing the gates](../images/ann.svg)
   
+The bias is explained in the below diagram, we used this configuration to implement NOT gate. For not gate input to the neuron N1 is always 1, and so the output, thus link L2 act as bias for the neuron N3. 
+
+![neural network implementing the gates](../images/bias.svg)
