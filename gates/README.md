@@ -1,6 +1,6 @@
 # Logic gate implementation using neural network.
 Very simple example where we used ANN to implement logic gates. This looks very childish but, but this simple
-implementation is good enough to test the Prof Of Concept (POC) of our ANN. The accompanying code asserts 
+implementation is good enough to test the Prof Of Concept (POC) of our ANN. The [accompanying code](./gates.py) asserts 
 our POC by implementing the following.
 1. A class which implements a neural network of three neurons and five links.
 2. They are architecturally organized two layers.
