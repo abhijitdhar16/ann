@@ -29,5 +29,6 @@ concept may change etc. in future. But for the time being we have four classes
 3. timer - to replace layer
 4. annErrors - to handle the run time errors.
 
-Definition of each class is available on the top of each class in the file [neuron.py](./neuron.py).
+Definition of each class is available on the top of each class in the file [neuron.py](./neuron.py). The neuron.py is used in:
+1. [Implementation of logic gates](./gates/README.md)
 
