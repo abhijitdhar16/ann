@@ -117,8 +117,21 @@ class my_network () :
 #-------------------------------------------------------------------------------
 # End definition of AND neural network
 #-------------------------------------------------------------------------------
-nnet = my_network(thresholds=[(1,1), (1,1), (0, 1)])
 
+#-------------------------------------------------------------------------------
+# The above neural network can be used to implement simple logic gate, like 
+# and, or, xor, nand and not . We only changed the activation threshold range 
+# of the neuron Y.
+#-------------------------------------------------------------------------------
+print("-----------------------------------------------")
+print("use of neural network to implement logic gates")
+print("-----------------------------------------------\n")
+
+#-------------------------------------------------------------------------------
+# Implementation of OR gate
+#-------------------------------------------------------------------------------
+print("Implementation of OR gate")
+nnet = my_network(thresholds=[(1,1), (1,1), (1, 2)])
 nnet.set_weight1(1)
 nnet.set_weight2(1)
 for a in [0, 1] :
@@ -126,5 +139,69 @@ for a in [0, 1] :
         nnet.set_input1(a)
         nnet.set_input1(b)
         retval = nnet.process()
-        print(retval)
+        print("%s or %s = %s" %(a, b, retval))
+print("\n")
+
+#-------------------------------------------------------------------------------
+# Implementation of AND gate
+#-------------------------------------------------------------------------------
+print("Implementation of AND gate")
+nnet = my_network(thresholds=[(1,1), (1,1), (2, 2)])
+nnet.set_weight1(1)
+nnet.set_weight2(1)
+for a in [0, 1] :
+    for b in [0, 1] :
+        nnet.set_input1(a)
+        nnet.set_input1(b)
+        retval = nnet.process()
+        print("%s and %s = %s" %(a, b, retval))
+print("\n")
+
+#-------------------------------------------------------------------------------
+# Implementation of XOR gate
+#-------------------------------------------------------------------------------
+print("Implementation of XOR gate")
+nnet = my_network(thresholds=[(1,1), (1,1), (1, 1.5)])
+nnet.set_weight1(1)
+nnet.set_weight2(1)
+for a in [0, 1] :
+    for b in [0, 1] :
+        nnet.set_input1(a)
+        nnet.set_input1(b)
+        retval = nnet.process()
+        print("%s xor %s = %s" %(a, b, retval))
+print("\n")
+
+#-------------------------------------------------------------------------------
+# Implementation of NAND gate
+#-------------------------------------------------------------------------------
+print("Implementation of NAND gate")
+nnet = my_network(thresholds=[(1,1), (1,1), (0, 1)])
+nnet.set_weight1(1)
+nnet.set_weight2(1)
+for a in [0, 1] :
+    for b in [0, 1] :
+        nnet.set_input1(a)
+        nnet.set_input1(b)
+        retval = nnet.process()
+        print("%s nand %s = %s" %(a, b, retval))
+print("\n")
+
+#-------------------------------------------------------------------------------
+# Implementation of NOT gate. Implementation of not gate is bit tricky. It
+# is basically a NAND gate with one of the input always 1. Say input 1 is 
+# always 1.
+#-------------------------------------------------------------------------------
+print("Implementation of NOT gate")
+nnet = my_network(thresholds=[(1,1), (1,1), (0, 1)])
+nnet.set_weight1(1)
+nnet.set_weight2(1)
+for b in [0, 1] :
+    nnet.set_input1(1)
+    nnet.set_input1(b)
+    retval = nnet.process()
+    print("%s not = %s" %(b, retval))
+print("\n")
+
+print("-----------------------------------------------")
 
