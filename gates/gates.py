@@ -127,13 +127,41 @@ print("-----------------------------------------------")
 print("use of neural network to implement logic gates")
 print("-----------------------------------------------\n")
 
+
 #-------------------------------------------------------------------------------
-# Implementation of OR gate
+# Define activation function of the all the three neurons of the our neural
+# network N1, N2, N3 respectively. 
+#             +---->
+#             | = 1  (1.0 <= x <= 1) 
+#     f (x) = + 
+#             | = 0  x < 1.0 or > 1
+#             +---->
+# Assumption - activation function is same for all the neurons. We will only
+#              adjust weights of the links to implements the gates.
+# Note:
+#      There are three neurons.
+#      => there are three activation functions - one per neuron.
+#      => We need a list of three tuples to specify max and min each neuron's
+#         activation function. (In each tuple first value defines the 
+#         min_threshold and second value defines the max_threshold of the 
+#         activation function.
+#-------------------------------------------------------------------------------
+nnet = my_network(thresholds=[(0.1, 1), (0.1, 1), (0.1, 1)])
+print("""Threshold function is defined as :
+             +---->
+             | = 1  (1.0 <= x <= 1)
+     f (x) = +
+             | = 0  x < 1.0 or > 1
+             +---->
+for all neurons.
+""")
+
+#-------------------------------------------------------------------------------
+# Implementation of OR gate. Adjust the link weights to implement OR gate.
 #-------------------------------------------------------------------------------
 print("Implementation of OR gate")
-nnet = my_network(thresholds=[(1,1), (1,1), (1, 2)])
-nnet.set_weight1(1)
-nnet.set_weight2(1)
+nnet.set_weight1(0.5)
+nnet.set_weight2(0.5)
 for a in [0, 1] :
     for b in [0, 1] :
         nnet.set_input1(a)
@@ -143,12 +171,11 @@ for a in [0, 1] :
 print("\n")
 
 #-------------------------------------------------------------------------------
-# Implementation of AND gate
+# Implementation of AND gate. Adjust the link weights to implement AND gate.
 #-------------------------------------------------------------------------------
 print("Implementation of AND gate")
-nnet = my_network(thresholds=[(1,1), (1,1), (2, 2)])
-nnet.set_weight1(1)
-nnet.set_weight2(1)
+nnet.set_weight1(.06)
+nnet.set_weight2(.06)
 for a in [0, 1] :
     for b in [0, 1] :
         nnet.set_input1(a)
@@ -158,12 +185,11 @@ for a in [0, 1] :
 print("\n")
 
 #-------------------------------------------------------------------------------
-# Implementation of XOR gate
+# Implementation of XOR gate. Adjust the link weights to implement XOR gate.
 #-------------------------------------------------------------------------------
 print("Implementation of XOR gate")
-nnet = my_network(thresholds=[(1,1), (1,1), (1, 1.5)])
-nnet.set_weight1(1)
-nnet.set_weight2(1)
+nnet.set_weight1(1.0)
+nnet.set_weight2(1.0)
 for a in [0, 1] :
     for b in [0, 1] :
         nnet.set_input1(a)
@@ -173,29 +199,13 @@ for a in [0, 1] :
 print("\n")
 
 #-------------------------------------------------------------------------------
-# Implementation of NAND gate
-#-------------------------------------------------------------------------------
-print("Implementation of NAND gate")
-nnet = my_network(thresholds=[(1,1), (1,1), (0, 1)])
-nnet.set_weight1(1)
-nnet.set_weight2(1)
-for a in [0, 1] :
-    for b in [0, 1] :
-        nnet.set_input1(a)
-        nnet.set_input1(b)
-        retval = nnet.process()
-        print("%s nand %s = %s" %(a, b, retval))
-print("\n")
-
-#-------------------------------------------------------------------------------
 # Implementation of NOT gate. Implementation of not gate is bit tricky. It
 # is basically a NAND gate with one of the input always 1. Say input 1 is 
 # always 1.
 #-------------------------------------------------------------------------------
 print("Implementation of NOT gate")
-nnet = my_network(thresholds=[(1,1), (1,1), (0, 1)])
 nnet.set_weight1(1)
-nnet.set_weight2(1)
+nnet.set_weight2(.75)
 for b in [0, 1] :
     nnet.set_input1(1)
     nnet.set_input1(b)

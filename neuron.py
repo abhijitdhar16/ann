@@ -1,4 +1,5 @@
 import sys
+inf = 2 ** 64
 #------------------------------------------------------------------------------
 # Artificial neurons can be used to emulate simple logic functions like
 # AND, OR, XOR etc. This library defines three simple class "neuron", "link"
