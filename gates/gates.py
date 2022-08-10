@@ -200,8 +200,7 @@ print("\n")
 
 #-------------------------------------------------------------------------------
 # Implementation of NOT gate. Implementation of not gate is bit tricky. It
-# is basically a NAND gate with one of the input always 1. Say input 1 is 
-# always 1.
+# is basically a gate with one of the one of the neuron's output always 1.
 #-------------------------------------------------------------------------------
 print("Implementation of NOT gate")
 nnet.set_weight1(1)
